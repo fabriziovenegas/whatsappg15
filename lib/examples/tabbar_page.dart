@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsappg15/tabs/call_tab.dart';
-import 'package:whatsappg15/tabs/camera_tab.dart';
-import 'package:whatsappg15/tabs/chats_tab.dart';
-import 'package:whatsappg15/tabs/status_tab.dart';
+
+// TabBar es un widget que crea pestañas horizontales
 
 class TabbarPage extends StatelessWidget {
   const TabbarPage({super.key});
@@ -10,39 +8,36 @@ class TabbarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
-      length: 4,
+      length: 5, //número de pestañas
+      initialIndex: 1, //por defecto es 0, indica la pestaña inicial
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff1D3D2C),
-          foregroundColor: Colors.white,
-          actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-          ],
-          title: Text(
-            "WhatsApp",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: Text("TabBar Page"),
           bottom: TabBar(
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
-            indicatorWeight: 4,
-            unselectedLabelColor: Colors.grey,
+            indicatorColor: Colors.red, //Color de la barra que se selecciona
+            indicatorWeight: 8, //ancho de la barra
+            unselectedLabelColor:
+                Colors.pink, // color de los label NO seleccionado (tab)
+            labelColor: Colors.cyan, // color del label seleccionado (tab)
+            isScrollable:
+                true, //si tienes muchas pestañas, te ayuda a desplazar
+            // conjunto de pestañas
             tabs: [
-              Tab(icon: Icon(Icons.camera_alt)),
-              Tab(text: "Chats"),
-              Tab(text: "Status"),
-              Tab(text: "Calls"),
+              Tab(text: "chats"),
+              Tab(text: "estados"),
+              Tab(text: "llamadas"),
+              Tab(text: "pestaña 4"),
+              Tab(text: "pestaña 5"),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            CameraTab(),
-            ChatsTab(),
-            Center(child: StatusTab()),
-            CallTab(),
+            Center(child: Text("Pantalla chats")),
+            Center(child: Text("Pantalla Estados")),
+            Center(child: Text("Pantalla Llamadas")),
+            Center(child: Text("Pantalla 4")),
+            Center(child: Text("Pantalla 5")),
           ],
         ),
       ),
